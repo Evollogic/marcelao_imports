@@ -1,0 +1,1 @@
+const NUMERO_WHATSAPP = "(55) 99941-1039";

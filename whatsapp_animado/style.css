@@ -1,0 +1,50 @@
+/* Fundo escuro apenas para visualização */
+body {
+    background-color: #1a1a1a;
+    margin: 0;
+    height: 100vh;
+}
+
+/* Container do botão */
+.btn-whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    z-index: 1000;
+    display: block;
+    /* Chama a animação que criamos abaixo, dura 2.5s e repete infinitamente */
+    animation: chamando-clique 2.5s infinite;
+}
+
+/* Estilo da imagem dentro do botão */
+.btn-whatsapp-float img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Coloca uma sombra bonita na própria imagem */
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.4));
+    transition: transform 0.2s ease;
+}
+
+/* Quando o usuário passa o mouse, ele cresce e para de tremer (opcional, visual agradável) */
+.btn-whatsapp-float:hover img {
+    transform: scale(1.15);
+}
+
+/* Animação que faz o botão dar umas "tremidinhas" */
+@keyframes chamando-clique {
+    0%, 100% { 
+        transform: rotate(0deg) scale(1); 
+    }
+    10%, 30%, 50% { 
+        transform: rotate(-15deg) scale(1.1); 
+    }
+    20%, 40% { 
+        transform: rotate(15deg) scale(1.1); 
+    }
+    60% { 
+        transform: rotate(0deg) scale(1); 
+    }
+}

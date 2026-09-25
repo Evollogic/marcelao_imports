@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Completo | Marcelão Imports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="data/index_data/style.css?v=25">
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        .badge-lancamento { background-color: #7209b7 !important; color: #fff !important; }
+        .badge-oferta { background-color: #e63946 !important; color: #fff !important; }
+        .badge-pouco-estoque { background-color: #fca311 !important; color: #111 !important; }
+        
+        .page-header { padding: 140px 20px 40px; text-align: center; background: linear-gradient(to bottom, #111 0%, #000 100%); }
+        .btn-voltar { display: inline-block; margin-bottom: 20px; color: #d4af37; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid #d4af37; padding: 8px 20px; border-radius: 20px; transition: all 0.3s ease; }
+        .btn-voltar:hover { background: #d4af37; color: #000; }
+    </style>
+</head>
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
+
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="data/index_data/logo.png" alt="Marcelão Imports"></a>
+        </div>
+        <nav>
+            <a href="index.html#promocoes" data-i18n="nav_ofertas">Ofertas</a>
+            <a href="catalogo.html" class="nav-highlight" data-i18n="nav_catalogo">Catálogo</a>
+            <a href="index.html#referencias" data-i18n="nav_entregas">Entregas</a>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <a href="index.html" class="btn-voltar">➔ Voltar para Início</a>
+        <h1 class="section-title" style="color: #fff;">Todos os Aparelhos</h1>
+        <p style="color: #aaa; max-width: 600px; margin: 0 auto;">Navegue por todo o nosso estoque de pronta entrega. Preços e condições exclusivas no WhatsApp.</p>
+    </div>
+
+    <section id="catalogo-completo" style="padding-top: 20px;">
+        <div class="products-grid">
+            
+            <div class="product-card normal-card">
+                <span class="badge-stock badge-lancamento">🚀 Lançamento</span>
+                <div class="product-img-container"><img src="data/phones/iphone16pro.png" alt="iPhone 16 Pro" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
+                <h3 class="product-title">iPhone 16 Pro 256GB</h3>
+                <p class="product-desc">O mais novo lançamento da Apple.</p>
+                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 7.150,00</span></div>
+                <a href="#" class="btn-buy" onclick="chamarZap('iPhone 16 Pro 256GB'); return false;">Chamar no WhatsApp</a>
+            </div>
+
+            <div class="product-card normal-card">
+                <span class="badge-stock badge-lancamento">🚀 Lançamento</span>
+                <div class="product-img-container"><img src="data/phones/xiaomi14ultra.png" alt="Xiaomi 14 Ultra" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
+                <h3 class="product-title">Xiaomi 14 Ultra</h3>
+                <p class="product-desc">Poder fotográfico Leica absoluto.</p>
+                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 6.300,00</span></div>
+                <a href="#" class="btn-buy" onclick="chamarZap('Xiaomi 14 Ultra'); return false;">Chamar no WhatsApp</a>
+            </div>
+
+            <div class="product-card normal-card">
+                <span class="badge-stock badge-oferta">🎯 Oferta</span>
+                <div class="product-img-container"><img src="data/phones/iphone13.png" alt="iPhone 13" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
+                <h3 class="product-title">iPhone 13 128GB</h3>
+                <p class="product-desc">O campeão de vendas. Novo e lacrado.</p>
+                <div class="price-box-highlight normal-price"><span class="price-old" style="font-size: 0.85rem; color:#888;">De R$ 3.200,00</span><span class="price-new" style="font-size: 1.5rem; color: #fff;">Por R$ 2.899,00</span></div>
+                <a href="#" class="btn-buy" onclick="chamarZap('iPhone 13 128GB'); return false;">Chamar no WhatsApp</a>
+            </div>
+
+            <div class="product-card normal-card">
+                <span class="badge-stock badge-pouco-estoque">⚠️ Pouco Estoque</span>
+                <div class="product-img-container"><img src="data/phones/switch.png" alt="Nintendo Switch" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
+                <h3 class="product-title">Nintendo Switch OLED</h3>
+                <p class="product-desc">Tela vibrante e diversão garantida.</p>
+                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 1.850,00</span></div>
+                <a href="#" class="btn-buy" onclick="chamarZap('Nintendo Switch OLED'); return false;">Chamar no WhatsApp</a>
+            </div>
+
+            <div class="product-card normal-card">
+                <span class="badge-stock" data-i18n="pronta_entrega">Pronta Entrega</span>
+                <div class="product-img-container"><img src="data/phones/pocox7.png" alt="POCO X7 Pro" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
+                <h3 class="product-title">POCO X7 Pro 5G</h3>
+                <p class="product-desc">O monstro do custo-benefício.</p>
+                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 1.950,00</span></div>
+                <a href="#" class="btn-buy" onclick="chamarZap('POCO X7 Pro'); return false;">Chamar no WhatsApp</a>
+            </div>
+
+            <div class="product-card normal-card">
+                <span class="badge-stock" data-i18n="pronta_entrega">Pronta Entrega</span>
+                <div class="product-img-container"><img src="data/phones/airpodspro2.png" alt="AirPods Pro 2" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
+                <h3 class="product-title">AirPods Pro 2ª Geração</h3>
+                <p class="product-desc">Cancelamento de ruído absurdo.</p>
+                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 1.450,00</span></div>
+                <a href="#" class="btn-buy" onclick="chamarZap('AirPods Pro 2'); return false;">Chamar no WhatsApp</a>
+            </div>
+
+            <div class="product-card normal-card">
+                <span class="badge-stock" data-i18n="pronta_entrega">Pronta Entrega</span>
+                <div class="product-img-container"><img src="data/phones/ipadair.png" alt="iPad Air" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
+                <h3 class="product-title">iPad Air M2 128GB</h3>
+                <p class="product-desc">Potência de computador em suas mãos.</p>
+                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 4.500,00</span></div>
+                <a href="#" class="btn-buy" onclick="chamarZap('iPad Air M2'); return false;">Chamar no WhatsApp</a>
+            </div>
+
+            <div class="product-card normal-card">
+                <span class="badge-stock badge-pouco-estoque">⚠️ Pouco Estoque</span>
+                <div class="product-img-container"><img src="data/phones/macbookair.png" alt="MacBook Air" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
+                <h3 class="product-title">MacBook Air M3</h3>
+                <p class="product-desc">O notebook mais amado do mundo.</p>
+                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 7.800,00</span></div>
+                <a href="#" class="btn-buy" onclick="chamarZap('MacBook Air M3'); return false;">Chamar no WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-bottom" style="border-top: none; padding-top: 50px;">
+            <p>&copy; 2026 Marcelão Distribuidor Imports. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="#" onclick="chamarZap('Atendimento Catálogo Completo'); return false;" class="btn-whatsapp-float">
+        <img src="data/redes_sociais/whatsapp.png" alt="WhatsApp" width="65" height="65">
+        <span class="zap-badge">1</span>
+    </a>
+
+    <!-- Apenas o whatsapp.js e o script.js original -->
+    <script src="whatsapp.js"></script>
+    <script src="data/index_data/script.js"></script>
+
+    <script>
+        // FUNÇÃO WHATSAPP BLINDADA PARA O CATÁLOGO
+        window.chamarZap = function(produto) {
+            let numero = "5541992595757"; 
+            try {
+                if (typeof NUMERO_WHATSAPP !== 'undefined') {
+                    numero = NUMERO_WHATSAPP.replace(/\D/g, ''); 
+                }
+            } catch(e) { console.error(e); }
+            
+            if (!numero.startsWith('55') && numero.length <= 11) { numero = '55' + numero; }
+            
+            const msg = encodeURIComponent(`Olá, Marcelão Imports! Tenho interesse no: ${produto}`);
+            window.open(`https://wa.me/${numero}?text=${msg}`, '_blank');
+        };
+    </script>
+</body>
+</html>

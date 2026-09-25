@@ -1,0 +1,35 @@
+const catalogoCompleto = [
+    { id: 1, nome: "iPhone 17 Pro Max 512GB", categoria: "apple", preco: 8999, desc: "O suprassumo da tecnologia Apple.", img: "data/phones/iphone15pro.png", promo: true, precoVelho: "R$ 9.500", precoNovo: "R$ 8.999" },
+    { id: 2, nome: "iPhone 17 256GB", categoria: "apple", preco: 6499, desc: "Lançamento com chip ultra veloz.", img: "data/phones/iphone15pro.png", promo: false, precoNovo: "R$ 6.499" },
+    { id: 3, nome: "iPhone 16 Pro 256GB", categoria: "apple", preco: 5899, desc: "Perfeição em titânio e câmeras pro.", img: "data/phones/iphone14pro.png", promo: true, precoVelho: "R$ 6.300", precoNovo: "R$ 5.899" },
+    { id: 4, nome: "iPhone 16 128GB", categoria: "apple", preco: 4999, desc: "Cores vibrantes e bateria duradoura.", img: "data/phones/iphone14pro.png", promo: false, precoNovo: "R$ 4.999" },
+    { id: 5, nome: "iPhone 15 Pro 128GB", categoria: "apple", preco: 4599, desc: "Excelente custo na linha pro.", img: "data/phones/iphone15pro.png", promo: true, precoVelho: "R$ 4.900", precoNovo: "R$ 4.599" },
+    { id: 6, nome: "iPhone 15 128GB", categoria: "apple", preco: 3899, desc: "Dynamic Island e design impecável.", img: "data/phones/iphone14pro.png", promo: false, precoNovo: "R$ 3.899" },
+    { id: 7, nome: "iPhone 14 128GB", categoria: "apple", preco: 3299, desc: "Seminovo selecionado com garantia.", img: "data/phones/iphone14pro.png", promo: true, precoVelho: "R$ 3.600", precoNovo: "R$ 3.299" },
+    { id: 8, nome: "iPhone 13 128GB", categoria: "apple", preco: 2699, desc: "Ainda muito potente e econômico.", img: "data/phones/iphone14pro.png", promo: false, precoNovo: "R$ 2.699" },
+
+    { id: 9, nome: "Samsung Galaxy S25 Ultra", categoria: "samsung", preco: 7899, desc: "A inteligência artificial definitiva da Samsung.", img: "data/phones/pocox7.png", promo: true, precoVelho: "R$ 8.500", precoNovo: "R$ 7.899" },
+    { id: 10, nome: "Samsung Galaxy S25+", categoria: "samsung", preco: 6299, desc: "Tela AMOLED dinâmica de ponta.", img: "data/phones/pocox7.png", promo: false, precoNovo: "R$ 6.299" },
+    { id: 11, nome: "Samsung Galaxy S24 Ultra", categoria: "samsung", preco: 5499, desc: "Caneta S-Pen e zoom espacial de 100x.", img: "data/phones/pocox7.png", promo: true, precoVelho: "R$ 6.000", precoNovo: "R$ 5.499" },
+    { id: 12, nome: "Samsung Galaxy S24", categoria: "samsung", preco: 4199, desc: "Compacto, leve e muito potente.", img: "data/phones/pocox7.png", promo: false, precoNovo: "R$ 4.199" },
+    { id: 13, nome: "Samsung Galaxy Z Flip 6", categoria: "samsung", preco: 5199, desc: "O dobrável estiloso e compacto.", img: "data/phones/pocox7.png", promo: true, precoVelho: "R$ 5.700", precoNovo: "R$ 5.199" },
+    { id: 14, nome: "Samsung Galaxy A55 5G", categoria: "samsung", preco: 2199, desc: "O intermediário premium mais vendido.", img: "data/phones/pocox7.png", promo: false, precoNovo: "R$ 2.199" },
+    { id: 15, nome: "Samsung Galaxy A35 5G", categoria: "samsung", preco: 1699, desc: "Bom, bonito e bateria gigante.", img: "data/phones/pocox7.png", promo: false, precoNovo: "R$ 1.699" },
+
+    { id: 16, nome: "Xiaomi 15 Ultra", categoria: "xiaomi", preco: 6999, desc: "Conjunto ótico Leica profissional.", img: "data/phones/xiaomi13t.png", promo: true, precoVelho: "R$ 7.500", precoNovo: "R$ 6.999" },
+    { id: 17, nome: "Xiaomi 15 Pro", categoria: "xiaomi", preco: 5499, desc: "Desempenho extremo com Snapdragon.", img: "data/phones/xiaomi13t.png", promo: false, precoNovo: "R$ 5.499" },
+    { id: 18, nome: "Xiaomi 14T Pro", categoria: "xiaomi", preco: 3100, desc: "Carregamento ultrarrápido de 120W.", img: "data/phones/xiaomi13t.png", promo: true, precoVelho: "R$ 3.500", precoNovo: "R$ 3.100" },
+    { id: 19, nome: "POCO X7 Pro 5G", categoria: "xiaomi", preco: 1950, desc: "Focado em games e alta taxa de atualização.", img: "data/phones/pocox7.png", promo: false, precoNovo: "R$ 1.950" },
+    { id: 20, nome: "POCO F6 Pro", categoria: "xiaomi", preco: 2499, desc: "Flagship killer com preço justo.", img: "data/phones/pocox7.png", promo: true, precoVelho: "R$ 2.800", precoNovo: "R$ 2.499" },
+    { id: 21, nome: "Redmi Note 14 Pro+", categoria: "xiaomi", preco: 1899, desc: "Câmera de 200MP e resistência a água.", img: "data/phones/xiaomi13t.png", promo: false, precoNovo: "R$ 1.899" },
+    { id: 22, nome: "Redmi Note 14 5G", categoria: "xiaomi", preco: 1399, desc: "Excelente custo-benefício diário.", img: "data/phones/xiaomi13t.png", promo: false, precoNovo: "R$ 1.399" },
+
+    { id: 23, nome: "PlayStation 5 Pro", categoria: "console", preco: 5299, desc: "A versão mais potente da história dos consoles.", img: "data/phones/ps5.png", promo: true, precoVelho: "R$ 5.800", precoNovo: "R$ 5.299" },
+    { id: 24, nome: "PlayStation 5 Slim com Mídia", categoria: "console", preco: 3750, desc: "Com leitor de disco e 1TB de SSD.", img: "data/phones/ps5.png", promo: true, precoVelho: "R$ 4.200", precoNovo: "R$ 3.750" },
+    { id: 25, nome: "Xbox Series X 1TB", categoria: "console", preco: 3899, desc: "Poder gráfico bruto em 4K nativo.", img: "data/phones/ps5.png", promo: false, precoNovo: "R$ 3.899" },
+    { id: 26, nome: "Xbox Series S 512GB", categoria: "console", preco: 2399, desc: "Next-gen compacto e 100% digital.", img: "data/phones/ps5.png", promo: false, precoNovo: "R$ 2.399" },
+    { id: 27, nome: "Nintendo Switch OLED", categoria: "console", preco: 2199, desc: "Tela maior e cores muito mais vivas.", img: "data/phones/ps5.png", promo: false, precoNovo: "R$ 2.199" },
+    { id: 28, nome: "Steam Deck OLED 512GB", categoria: "console", preco: 4199, desc: "Seu PC gamer portátil na palma da mão.", img: "data/phones/ps5.png", promo: true, precoVelho: "R$ 4.500", precoNovo: "R$ 4.199" },
+    { id: 29, nome: "iPad Pro M4 11 polegadas", categoria: "apple", preco: 7499, desc: "Tela Tandem OLED e chip M4 revolucionário.", img: "data/phones/iphone15pro.png", promo: false, precoNovo: "R$ 7.499" },
+    { id: 30, nome: "Apple Watch Series 10", categoria: "apple", preco: 3199, desc: "O smartwatch mais fino e avançado da Apple.", img: "data/phones/iphone14pro.png", promo: true, precoVelho: "R$ 3.500", precoNovo: "R$ 3.100" }
+];
