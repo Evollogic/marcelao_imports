@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marcelão Imports | Os Melhores Importados</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="data/index_data/style.css?v=25">
+    <link rel="stylesheet" href="data/index_data/style.css?v=26">
     <style>
         html { scroll-behavior: smooth; }
         #promocoes, #catalogo, #referencias, #localizacao { scroll-margin-top: 100px; }
-
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 30px; }
         .footer-location-card { display: flex !important; flex-direction: row !important; background: #111; border: 1px solid #333; border-radius: 10px; overflow: hidden; text-decoration: none; color: #fff; transition: border-color 0.3s; }
         .footer-location-card:hover { border-color: #d4af37; }
@@ -18,24 +17,17 @@
         .location-text h4 { margin: 0 0 5px 0; font-size: 1rem; color: #fff; }
         .location-text p { margin: 2px 0; font-size: 0.8rem; color: #aaa; line-height: 1.3; }
         .click-map { display: inline-block; margin-top: 8px; font-size: 0.75rem; color: #d4af37; font-weight: bold; text-transform: uppercase; }
-
         @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; } }
-
         .badge-lancamento { background-color: #7209b7 !important; color: #fff !important; }
-        .badge-oferta { background-color: #e63946 !important; color: #fff !important; }
-        .badge-pouco-estoque { background-color: #fca311 !important; color: #111 !important; }
-        
         .btn-ver-todos { display: block; width: fit-content; margin: 40px auto 10px auto; padding: 12px 35px; background: transparent; border: 2px solid #d4af37; color: #d4af37; font-size: 1rem; font-weight: 800; border-radius: 8px; cursor: pointer; text-decoration: none; text-transform: uppercase; text-align: center; transition: all 0.3s ease; }
         .btn-ver-todos:hover { background: #d4af37; color: #111; transform: scale(1.05); }
-
         #video-wrapper { position: relative; overflow: hidden; cursor: pointer; background: #000; }
-        .nav-arrow { display: none !important; } 
+        .nav-arrow { display: none !important; }
         #modal-video-player { width: 100%; height: 100%; object-fit: cover; display: block; }
         .slide-up { animation: slideUp 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
         .slide-down { animation: slideDown 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
         @keyframes slideUp { 0% { transform: translateY(100%); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
         @keyframes slideDown { 0% { transform: translateY(-100%); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
-
         .shorts-ui { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%); padding: 30px 0 0 0; z-index: 10; pointer-events: none; display: flex; flex-direction: column; justify-content: flex-end; }
         .shorts-time { color: #fff; font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; margin-left: 15px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); letter-spacing: 0.5px; }
         .shorts-progress-container { position: relative; width: 100%; height: 30px; display: flex; align-items: center; pointer-events: auto; }
@@ -49,7 +41,6 @@
     </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
-
     <header>
         <div class="logo">
             <a href="index.html"><img src="data/index_data/logo.png" alt="Marcelão Imports"></a>
@@ -65,7 +56,6 @@
         <div class="hero-content">
             <h2><span data-i18n="hero_t1">O SEU NOVO APARELHO</span><br><span class="gold-text" data-i18n="hero_t2">ESTÁ AQUI.</span></h2>
             <p data-i18n="hero_p">Trabalhamos apenas com a linha de elite da Apple, Xiaomi e Consoles. Qualidade, procedência e entrega garantida.</p>
-
             <form class="beautiful-search" action="pesquisa.html" method="GET">
                 <input type="text" name="q" data-i18n-ph="search_placeholder" placeholder="Busque por iPhone 15, Xiaomi, PS5..." required autocomplete="off">
                 <button type="submit">
@@ -75,100 +65,19 @@
         </div>
     </section>
 
-    <section id="promocoes" class="promo-section">
+    <!-- OFERTAS DINÂMICAS DO WIX -->
+    <section id="promocoes" class="promo-section" style="display: none;">
         <div class="section-header-left">
             <h2 class="section-title" style="color: #fff; margin-bottom: 5px;" data-i18n="promo_title">Ofertas Relâmpago</h2>
             <p class="promo-subtitle" data-i18n="promo_subtitle">Deslize para o lado para ver mais ofertas ➔</p>
         </div>
-
-        <div class="promo-carousel">
-            <div class="product-card promo-card">
-                <div class="promo-pulse-badge" data-i18n="queima_estoque">🔥 Queima de Estoque</div>
-                <div class="product-img-container"><img src="data/phones/iphone14pro.png" alt="iPhone 14 Pro" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
-                <h3 class="product-title">iPhone 14 Pro 128GB</h3>
-                <p class="product-desc">Seminovo Premium. Bateria 100%, impecável.</p>
-                <div class="price-box-highlight"><span class="price-old">De R$ 4.800,00</span><span class="price-new">Por R$ 4.299,00</span></div>
-                <a href="#" class="btn-buy" onclick="chamarZap('iPhone 14 Pro 128GB'); return false;">Chamar no WhatsApp</a>
-            </div>
-
-            <div class="product-card promo-card">
-                <div class="promo-pulse-badge" data-i18n="com_brinde">🎁 Com Brinde</div>
-                <div class="product-img-container"><img src="data/phones/xiaomi13t.png" alt="Xiaomi 13T Pro" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
-                <h3 class="product-title">Xiaomi 13T Pro</h3>
-                <p class="product-desc">Câmeras Leica, 120W de carga e Smartwatch grátis.</p>
-                <div class="price-box-highlight"><span class="price-old">De R$ 3.500,00</span><span class="price-new">Por R$ 3.100,00</span></div>
-                <a href="#" class="btn-buy" onclick="chamarZap('Xiaomi 13T Pro'); return false;">Chamar no WhatsApp</a>
-            </div>
-
-            <div class="product-card promo-card">
-                <div class="promo-pulse-badge" data-i18n="ultima_unidade">⚠️ Última Unidade</div>
-                <div class="product-img-container"><img src="data/phones/ps5.png" alt="PlayStation 5" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
-                <h3 class="product-title">PlayStation 5 Slim</h3>
-                <p class="product-desc">Versão com leitor de disco, lacrado, 1 ano de garantia.</p>
-                <div class="price-box-highlight"><span class="price-old">De R$ 4.200,00</span><span class="price-new">Por R$ 3.750,00</span></div>
-                <a href="#" class="btn-buy" onclick="chamarZap('PlayStation 5 Slim'); return false;">Chamar no WhatsApp</a>
-            </div>
-        </div>
+        <div class="promo-carousel" id="promo-carousel-container"></div>
     </section>
 
+    <!-- CATÁLOGO DINÂMICO DO WIX -->
     <section id="catalogo">
-        <h2 class="section-title" data-i18n="cat_title">Catálogo em Destaque</h2>
-        <div class="products-grid" id="catalogo-grid">
-            <div class="product-card normal-card">
-                <span class="badge-stock badge-lancamento">🚀 Lançamento</span>
-                <div class="product-img-container"><img src="data/phones/iphone16pro.png" alt="iPhone 16 Pro" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
-                <h3 class="product-title">iPhone 16 Pro 256GB</h3>
-                <p class="product-desc">O mais novo lançamento da Apple.</p>
-                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 7.150,00</span></div>
-                <a href="#" class="btn-buy" onclick="chamarZap('iPhone 16 Pro 256GB'); return false;">Chamar no WhatsApp</a>
-            </div>
-
-            <div class="product-card normal-card">
-                <span class="badge-stock badge-lancamento">🚀 Lançamento</span>
-                <div class="product-img-container"><img src="data/phones/xiaomi14ultra.png" alt="Xiaomi 14 Ultra" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
-                <h3 class="product-title">Xiaomi 14 Ultra</h3>
-                <p class="product-desc">Poder fotográfico Leica absoluto.</p>
-                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 6.300,00</span></div>
-                <a href="#" class="btn-buy" onclick="chamarZap('Xiaomi 14 Ultra'); return false;">Chamar no WhatsApp</a>
-            </div>
-
-            <div class="product-card normal-card">
-                <span class="badge-stock badge-oferta">🎯 Oferta</span>
-                <div class="product-img-container"><img src="data/phones/iphone13.png" alt="iPhone 13" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
-                <h3 class="product-title">iPhone 13 128GB</h3>
-                <p class="product-desc">O campeão de vendas. Novo e lacrado.</p>
-                <div class="price-box-highlight normal-price"><span class="price-old" style="font-size: 0.85rem; color:#888;">De R$ 3.200,00</span><span class="price-new" style="font-size: 1.5rem; color: #fff;">Por R$ 2.899,00</span></div>
-                <a href="#" class="btn-buy" onclick="chamarZap('iPhone 13 128GB'); return false;">Chamar no WhatsApp</a>
-            </div>
-
-            <div class="product-card normal-card">
-                <span class="badge-stock badge-pouco-estoque">⚠️ Pouco Estoque</span>
-                <div class="product-img-container"><img src="data/phones/switch.png" alt="Nintendo Switch" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
-                <h3 class="product-title">Nintendo Switch OLED</h3>
-                <p class="product-desc">Tela vibrante e diversão garantida.</p>
-                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 1.850,00</span></div>
-                <a href="#" class="btn-buy" onclick="chamarZap('Nintendo Switch OLED'); return false;">Chamar no WhatsApp</a>
-            </div>
-
-            <div class="product-card normal-card">
-                <span class="badge-stock" data-i18n="pronta_entrega">Pronta Entrega</span>
-                <div class="product-img-container"><img src="data/phones/pocox7.png" alt="POCO X7 Pro" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
-                <h3 class="product-title">POCO X7 Pro 5G</h3>
-                <p class="product-desc">O monstro do custo-benefício.</p>
-                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 1.950,00</span></div>
-                <a href="#" class="btn-buy" onclick="chamarZap('POCO X7 Pro'); return false;">Chamar no WhatsApp</a>
-            </div>
-
-            <div class="product-card normal-card">
-                <span class="badge-stock" data-i18n="pronta_entrega">Pronta Entrega</span>
-                <div class="product-img-container"><img src="data/phones/airpodspro2.png" alt="AirPods Pro 2" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'"></div>
-                <h3 class="product-title">AirPods Pro 2ª Geração</h3>
-                <p class="product-desc">Cancelamento de ruído absurdo.</p>
-                <div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ 1.450,00</span></div>
-                <a href="#" class="btn-buy" onclick="chamarZap('AirPods Pro 2'); return false;">Chamar no WhatsApp</a>
-            </div>
-        </div>
-
+        <h2 class="section-title" data-i18n="cat_title">Catálogo Completo</h2>
+        <div class="products-grid" id="catalogo-grid"></div>
         <a href="catalogo.html" class="btn-ver-todos">Ver todos os aparelhos ➔</a>
     </section>
 
@@ -193,14 +102,12 @@
                 <p>CNPJ: 08.326.817/0001-66</p>
                 <div style="margin-top: 25px;"><p style="color: var(--gold); font-size: 0.85rem; font-weight: bold; text-transform: uppercase;">Segurança e Procedência</p><p style="font-size: 0.85rem;">Enviamos para todo o Brasil.</p></div>
             </div>
-
             <div class="footer-col">
                 <a href="https://maps.google.com/?q=Av.+Assis+Brasil,+6410,+Sarandi,+Porto+Alegre+-+RS" target="_blank" class="footer-location-card">
                     <div class="location-map-preview"><svg viewBox="0 0 24 24" width="32" height="32" fill="#d4af37"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
                     <div class="location-text"><h4>🇧🇷 Sede Brasil</h4><p>Av. Assis Brasil, 6410 - Loja 1</p><p>Bairro Sarandi, Porto Alegre - RS</p><p>CEP: 91140-000</p><span class="click-map">Abrir no Maps ➔</span></div>
                 </a>
             </div>
-
             <div class="footer-col">
                 <a href="https://maps.google.com/?q=Shopping+China+Importados,+Ciudad+del+Este,+Paraguay" target="_blank" class="footer-location-card">
                     <div class="location-map-preview"><svg viewBox="0 0 24 24" width="32" height="32" fill="#d4af37"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
@@ -249,35 +156,18 @@
         </div>
     </div>
 
-    <!-- Nossos Scripts -->
+    <!-- Scripts -->
     <script src="whatsapp.js"></script>
     <script src="data/index_data/lista_videos.js"></script>
-    <script src="data/index_data/script.js"></script>
-
-    <!-- FUNÇÃO DO WHATSAPP BLINDADA E FUNCIONANDO -->
+    <!-- REMOVIDO: O arquivos produtos.js fantasma não existe mais! -->
+    
+    <!-- MUDANÇA AQUI: type="module" pra permitir a comunicação direta com o SDK do WIX -->
+    <script type="module" src="data/index_data/script.js"></script>
+    
     <script>
-        // Esta função sobrescreve qualquer outra velha. Lê direto do whatsapp.js!
-        window.chamarZap = function(produto) {
-            let numero = "5541992595757"; // Fallback de segurança
-            try {
-                if (typeof NUMERO_WHATSAPP !== 'undefined') {
-                    numero = NUMERO_WHATSAPP.replace(/\D/g, ''); 
-                }
-            } catch(e) { console.error(e); }
-            
-            if (!numero.startsWith('55') && numero.length <= 11) {
-                numero = '55' + numero;
-            }
-            
-            const msg = encodeURIComponent(`Olá, Marcelão Imports! Tenho interesse no: ${produto}`);
-            window.open(`https://wa.me/${numero}?text=${msg}`, '_blank');
-        };
-
-        // Lógica do Modal Shorts
         document.addEventListener("DOMContentLoaded", () => {
             const modal = document.getElementById('video-modal');
             const zapBtn = document.getElementById('btn-zap-float');
-
             const modalObserver = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
                     if (mutation.attributeName === 'style' || mutation.attributeName === 'class') {
@@ -306,11 +196,10 @@
                 const current = video.currentTime;
                 const total = video.duration || 0;
                 timeDisplay.innerText = formatTime(current) + ' / ' + formatTime(total);
-                
                 if (total > 0 && !isDraggingRange) {
                     const percent = (current / total) * 100;
                     progressFill.style.width = percent + '%';
-                    progressRange.value = percent; 
+                    progressRange.value = percent;
                 }
             });
 
@@ -333,21 +222,21 @@
             videoWrapper.addEventListener('click', (e) => {
                 if(e.target === progressRange) return;
                 e.stopPropagation();
-                if (video.paused) { video.play(); videoWrapper.classList.remove('video-paused'); } 
+                if (video.paused) { video.play(); videoWrapper.classList.remove('video-paused'); }
                 else { video.pause(); videoWrapper.classList.add('video-paused'); }
             });
 
             function triggerSlideAnimation(direction) {
                 video.classList.remove('slide-up', 'slide-down');
                 void video.offsetWidth;
-                if (direction === 'up') { video.classList.add('slide-up'); } 
+                if (direction === 'up') { video.classList.add('slide-up'); }
                 else { video.classList.add('slide-down'); }
             }
 
             videoWrapper.addEventListener('wheel', (e) => {
                 e.stopPropagation();
-                if (e.deltaY > 50) { if (typeof proximoVideo === 'function') { triggerSlideAnimation('up'); proximoVideo(e); } } 
-                else if (e.deltaY < -50) { if (typeof voltarVideo === 'function') { triggerSlideAnimation('down'); voltarVideo(e); } }
+                if (e.deltaY > 50) { if (typeof window.proximoVideo === 'function') { triggerSlideAnimation('up'); window.proximoVideo(e); } }
+                else if (e.deltaY < -50) { if (typeof window.voltarVideo === 'function') { triggerSlideAnimation('down'); window.voltarVideo(e); } }
             }, { passive: true });
 
             let touchStartY = 0;
@@ -356,9 +245,9 @@
             videoWrapper.addEventListener('touchend', (e) => { if (e.target !== progressRange) { touchEndY = e.changedTouches[0].screenY; handleSwipe(e); } }, { passive: true });
 
             function handleSwipe(e) {
-                const swipeThreshold = 50; 
-                if (touchStartY - touchEndY > swipeThreshold) { if (typeof proximoVideo === 'function') { triggerSlideAnimation('up'); proximoVideo(e); } } 
-                else if (touchEndY - touchStartY > swipeThreshold) { if (typeof voltarVideo === 'function') { triggerSlideAnimation('down'); voltarVideo(e); } }
+                const swipeThreshold = 50;
+                if (touchStartY - touchEndY > swipeThreshold) { if (typeof window.proximoVideo === 'function') { triggerSlideAnimation('up'); window.proximoVideo(e); } }
+                else if (touchEndY - touchStartY > swipeThreshold) { if (typeof window.voltarVideo === 'function') { triggerSlideAnimation('down'); window.voltarVideo(e); } }
             }
         });
     </script>

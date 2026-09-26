@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados | Marcelão Imports</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="data/index_data/style.css?v=25">
+    <link rel="stylesheet" href="data/index_data/style.css?v=26">
 </head>
-<body>
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
 
     <header>
         <div class="logo">
             <a href="index.html"><img src="data/index_data/logo.png" alt="Marcelão Imports" style="max-height: 40px;"></a>
         </div>
         <nav>
-            <a href="index.html" data-i18n="nav_catalogo">⬅ Voltar ao Catálogo</a>
+            <a href="catalogo.html" data-i18n="nav_catalogo">⬅ Voltar ao Catálogo</a>
         </nav>
     </header>
 
@@ -25,11 +25,11 @@
     </section>
 
     <!-- TELA DE CARREGAMENTO -->
-    <div id="loading-container" class="loading-container">
+    <div id="loading-container" class="loading-container" style="display: block;">
         <div class="loading-dots">
             <div></div><div></div><div></div>
         </div>
-        <p style="color: var(--gold); margin-top: 15px; font-weight: 600; font-size: 1.2rem;">Verificando estoque...</p>
+        <p style="color: var(--gold); margin-top: 15px; font-weight: 600; font-size: 1.2rem;">Verificando estoque no sistema...</p>
     </div>
 
     <!-- SESSÃO DE RESULTADOS -->
@@ -37,7 +37,7 @@
         <div class="products-grid" id="resultados-grid" style="display: none;"></div>
         
         <div id="erro-busca" style="display: none; text-align: center; padding: 40px 20px; max-width: 600px; margin: 0 auto;">
-            <!-- Preenchido via JS -->
+            <!-- Preenchido via JS dinamicamente -->
         </div>
     </section>
 
@@ -56,86 +56,164 @@
     </footer>
 
     <!-- Botão Zap Direita -->
-    <a href="#" onclick="chamarZap('Atendimento Geral'); return false;" class="btn-whatsapp-float">
+    <a href="#" onclick="chamarZap('Atendimento Busca'); return false;" class="btn-whatsapp-float">
         <img src="data/redes_sociais/whatsapp.png" alt="WhatsApp" width="65" height="65">
     </a>
 
-    <script src="data/index_data/script.js"></script>
-    <script>
-        const bancoDeProdutos = [
-            { nome: "iPhone 14 Pro 128GB", tags: "apple ios iphone 14 pro 128 celular smartphone seminovo", desc: "Seminovo Premium. Bateria 100%, impecável.", img: "data/phones/iphone14pro.png", promo: true, precoVelho: "De R$ 4.800,00", precoNovo: "Por R$ 4.299,00" },
-            { nome: "Xiaomi 13T Pro", tags: "xiaomi 13t pro android leica smartwatch brinde", desc: "Câmeras Leica, 120W de carga e Smartwatch grátis.", img: "data/phones/xiaomi13t.png", promo: true, precoVelho: "De R$ 3.500,00", precoNovo: "Por R$ 3.100,00" },
-            { nome: "PlayStation 5 Slim", tags: "ps5 playstation 5 slim sony videogame console", desc: "Versão com leitor de disco, lacrado, 1 ano de garantia.", img: "data/phones/ps5.png", promo: true, precoVelho: "De R$ 4.200,00", precoNovo: "Por R$ 3.750,00" },
-            { nome: "iPhone 15 Pro 256GB", tags: "apple ios iphone 15 pro titanium", desc: "Titânio e desempenho absurdo.", img: "data/phones/iphone15pro.png", promo: false, precoNovo: "R$ 5.850,00" },
-            { nome: "POCO X7 Pro 5G", tags: "xiaomi poco x7 pro gamer celular smartphone", desc: "O monstro do custo-benefício para jogos.", img: "data/phones/pocox7.png", promo: false, precoNovo: "R$ 1.950,00" }
-        ];
+    <!-- Scripts Compartilhados -->
+    <script src="whatsapp.js"></script>
 
+    <!-- Lógica Global do WhatsApp Blindado -->
+    <script>
+        async function obterNumeroDoTxt() {
+            try {
+                const resposta = await fetch('whatsapp.txt?v=' + new Date().getTime());
+                if (!resposta.ok) return null;
+                const texto = await resposta.text();
+                return texto.replace(/\D/g, '');
+            } catch (erro) {
+                return null;
+            }
+        }
+
+        window.chamarZap = async function(produto) {
+            let numero = await obterNumeroDoTxt();
+            if (typeof NUMERO_WHATSAPP !== 'undefined') { 
+                let jsNum = NUMERO_WHATSAPP.replace(/\D/g, ''); 
+                if (jsNum) numero = jsNum;
+            }
+
+            if (!numero || numero.length < 10) {
+                console.error("❌ ERRO GRAVE: Nenhum número válido encontrado. Abortando mensagem.");
+                return; 
+            }
+            if (!numero.startsWith('55') && numero.length <= 11) { numero = '55' + numero; }
+
+            let cliques = JSON.parse(localStorage.getItem('cliquesProdutos')) || {};
+            cliques[produto] = (cliques[produto] || 0) + 1;
+            localStorage.setItem('cliquesProdutos', JSON.stringify(cliques));
+
+            let lang = localStorage.getItem('siteLang') || 'pt';
+            let msg = `Olá, Marcelão Imports! Tenho interesse no: ${produto}`;
+            if (lang === 'es') msg = `¡Hola, Marcelão Imports! Estoy interesado en: ${produto}`;
+            else if (lang === 'en') msg = `Hi, Marcelão Imports! I am interested in: ${produto}`;
+
+            window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
+        };
+    </script>
+
+    <!-- Integração Direta com Wix SDK -->
+    <script type="module">
+        import { createClient, OAuthStrategy } from 'https://esm.sh/@wix/sdk@latest';
+        import { products } from 'https://esm.sh/@wix/stores@latest';
+
+        const CLIENT_ID = 'af0efa30-5a54-4813-a964-e064f08f8065';
         const urlParams = new URLSearchParams(window.location.search);
         const query = urlParams.get('q');
         
-        if(query) {
-            document.getElementById('termo-buscado').innerText = '"' + query + '"';
-            
-            const q = query.toLowerCase().trim();
-            const resultados = bancoDeProdutos.filter(p => p.nome.toLowerCase().includes(q) || p.tags.includes(q));
-            
+        function formatarImagemWix(wixUrl) {
+            if (!wixUrl) return 'https://via.placeholder.com/300x300/ffffff/555555?text=Sem+Imagem';
+            if (wixUrl.startsWith('http')) return wixUrl;
+            if (wixUrl.startsWith('wix:image://v1/')) {
+                const arquivo = wixUrl.split('/')[3].split('#')[0];
+                return `https://static.wixstatic.com/media/${arquivo}`;
+            }
+            return 'https://via.placeholder.com/300x300/ffffff/555555?text=Sem+Imagem';
+        }
+
+        async function realizarBuscaWix() {
             const grid = document.getElementById('resultados-grid');
             const erro = document.getElementById('erro-busca');
             const loading = document.getElementById('loading-container');
-            
-            loading.style.display = 'block';
 
-            setTimeout(() => {
+            if (!query) {
+                loading.style.display = 'none';
+                document.getElementById('termo-buscado').innerText = "Busca Vazia";
+                erro.innerHTML = '<h3 style="color: #fff;">Você não digitou nada na busca. Tente novamente!</h3>';
+                erro.style.display = 'block';
+                return;
+            }
+
+            document.getElementById('termo-buscado').innerText = '"' + query + '"';
+            const qLower = query.toLowerCase().trim();
+
+            try {
+                const wixClient = createClient({
+                    modules: { products },
+                    auth: OAuthStrategy({ clientId: CLIENT_ID })
+                });
+
+                // Puxa do Wix e faz o filtro por nome e descrição
+                const resposta = await wixClient.products.queryProducts().limit(100).find();
+                
+                const resultados = resposta.items.filter(p => {
+                    const nome = (p.name || '').toLowerCase();
+                    const desc = (p.description || '').toLowerCase();
+                    return nome.includes(qLower) || desc.includes(qLower);
+                });
+
                 loading.style.display = 'none';
 
-                if(resultados.length > 0) {
+                if (resultados.length > 0) {
                     let htmlStr = '';
+                    const imgStyle = `width: 100%; aspect-ratio: 1 / 1; display: flex; justify-content: center; align-items: center; background: #ffffff; border-radius: 8px; margin-bottom: 12px; overflow: hidden;`;
+
                     resultados.forEach(p => {
-                        let btnAction = `chamarZap('${p.nome}')`;
-                        
-                        if(p.promo) {
-                            htmlStr += `
-                                <div class="product-card promo-card">
-                                    <div class="promo-pulse-badge">🔥 Encontrado</div>
-                                    <div class="product-img-container">
-                                        <img src="${p.img}" alt="${p.nome}" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'">
-                                    </div>
-                                    <h3 class="product-title">${p.nome}</h3>
-                                    <p class="product-desc">${p.desc}</p>
-                                    <div class="price-box-highlight">
-                                        <span class="price-old">${p.precoVelho}</span>
-                                        <span class="price-new">${p.precoNovo}</span>
-                                    </div>
-                                    <a href="#" class="btn-buy btn-promo" onclick="${btnAction}; return false;" data-i18n="btn_oferta">Garantir Oferta</a>
-                                </div>
-                            `;
-                        } else {
-                            htmlStr += `
-                                <div class="product-card normal-card">
-                                    <div class="product-img-container">
-                                        <img src="${p.img}" alt="${p.nome}" class="phone-mockup" onerror="this.src='https://via.placeholder.com/200x200/1a1a1a/444444?text=Sem+Foto'">
-                                    </div>
-                                    <h3 class="product-title">${p.nome}</h3>
-                                    <p class="product-desc">${p.desc}</p>
-                                    <div class="price-box-highlight normal-price">
-                                        <span class="price-new" style="font-size: 1.5rem; color: #fff;">${p.precoNovo}</span>
-                                    </div>
-                                    <a href="#" class="btn-buy" onclick="${btnAction}; return false;" data-i18n="btn_zap">Chamar no WhatsApp</a>
-                                </div>
-                            `;
+                        let precoOriginal = p.priceData?.formatted?.price || '0,00';
+                        let precoDesconto = p.priceData?.formatted?.discountedPrice;
+                        let pNovo = precoOriginal;
+                        let pAntigo = null;
+
+                        if (precoDesconto && precoDesconto !== precoOriginal) {
+                            pNovo = precoDesconto;
+                            pAntigo = precoOriginal;
                         }
+
+                        pNovo = pNovo.replace('R$', '').replace('\u00A0', '').trim();
+                        if (pAntigo) pAntigo = pAntigo.replace('R$', '').replace('\u00A0', '').trim();
+
+                        const imgUrl = formatarImagemWix(p.media?.mainMedia?.image?.url || p.media?.items?.[0]?.image?.url);
+                        const nome = p.name || 'Produto';
+                        const desc = p.description ? p.description.replace(/<[^>]*>?/gm, '').substring(0, 65) + '...' : 'Qualidade e procedência garantida.';
+                        const badge = p.ribbon || '';
+
+                        let badgeHtml = badge ? `<span class="badge-stock badge-lancamento">${badge}</span>` : '';
+                        let priceHtml = pAntigo 
+                            ? `<div class="price-box-highlight normal-price"><span class="price-old" style="font-size: 0.85rem; color:#888;">De R$ ${pAntigo}</span><span class="price-new" style="font-size: 1.5rem; color: #fff;">Por R$ ${pNovo}</span></div>`
+                            : `<div class="price-box-highlight normal-price"><span class="price-new" style="font-size: 1.5rem; color: #fff;">R$ ${pNovo}</span></div>`;
+
+                        htmlStr += `
+                            <div class="product-card normal-card">
+                                ${badgeHtml}
+                                <div style="${imgStyle}">
+                                    <img src="${imgUrl}" alt="${nome}" style="width: 100%; height: 100%; object-fit: contain; padding: 10px;">
+                                </div>
+                                <h3 class="product-title">${nome}</h3>
+                                <p class="product-desc">${desc}</p>
+                                ${priceHtml}
+                                <a href="#" class="btn-buy" onclick="chamarZap('${nome.replace(/'/g, "\\'")}'); return false;">Chamar no WhatsApp</a>
+                            </div>
+                        `;
                     });
+
                     grid.innerHTML = htmlStr;
                     grid.style.display = 'grid';
-                    // Reaplica idioma nos botões renderizados
-                    inicializarIdioma();
                 } else {
+                    // Produto Não Encontrado -> Link pro Vendedor
+                    let numero = await obterNumeroDoTxt();
+                    if (typeof NUMERO_WHATSAPP !== 'undefined') { 
+                        let jsNum = NUMERO_WHATSAPP.replace(/\D/g, ''); 
+                        if (jsNum) numero = jsNum;
+                    }
+
+                    if (!numero || numero.length < 10) numero = "5541992595757"; // Fallback seguro para não travar a página de erro
+                    if (!numero.startsWith('55') && numero.length <= 11) { numero = '55' + numero; }
+
                     let lang = localStorage.getItem('siteLang') || 'pt';
                     let msgErro = `Olá, vocês têm o produto ${query} no estoque?`;
                     if (lang === 'es') msgErro = `Hola, ¿tienen el producto ${query} en stock?`;
                     if (lang === 'en') msgErro = `Hi, do you have the product ${query} in stock?`;
-                    
-                    let linkWppErro = `https://wa.me/${MEU_WHATSAPP}?text=${encodeURIComponent(msgErro)}`;
+                    let linkWppErro = `https://wa.me/${numero}?text=${encodeURIComponent(msgErro)}`;
                     
                     erro.innerHTML = `
                         <div style="font-size: 4rem; margin-bottom: 10px;">😕</div>
@@ -146,7 +224,9 @@
                             <img src="data/redes_sociais/whatsapp.png" width="24" height="24">
                             Consultar Estoque no WhatsApp
                         </a>
+                        
                         <div style="width: 100%; height: 1px; background: #333; margin: 20px 0;"></div>
+                        
                         <p style="color: #fff; font-weight: 600; margin-bottom: 15px;">Ou tente pesquisar outro modelo:</p>
                         <form class="beautiful-search" action="pesquisa.html" method="GET" style="margin-top: 0;">
                             <input type="text" name="q" placeholder="Ex: iPhone, Xiaomi..." required autocomplete="off">
@@ -157,8 +237,16 @@
                     `;
                     erro.style.display = 'block';
                 }
-            }, 1200);
+            } catch (e) {
+                console.error("❌ Erro ao buscar no Wix:", e);
+                loading.style.display = 'none';
+                erro.innerHTML = '<h3 style="color: #fff;">Erro ao conectar com a loja. Tente novamente mais tarde.</h3>';
+                erro.style.display = 'block';
+            }
         }
+
+        // Dá um pequeno delay pra animação de busca aparecer pro cliente (fica mais profissional)
+        setTimeout(realizarBuscaWix, 800);
     </script>
 </body>
 </html>
